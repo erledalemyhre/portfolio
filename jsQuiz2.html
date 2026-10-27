@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: lightcoral;
+        }
+
+        header {
+            padding: 20px;
+            text-decoration: underline wavy;
+        }
+
+        .Quiz {
+            margin: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .Quiz>div {
+            background-color: lightpink;
+            padding: 40px;
+            border-radius: 20px;
+        }
+
+        .Spørs {
+            text-align: center;
+
+            h {
+                text-decoration: underline;
+                padding: 0 0 10px;
+            }
+        }
+
+        .svar {
+            display: flex;
+            justify-content: space-evenly;
+
+        }
+
+        .svar div {
+            background-color: lightblue;
+            width: 100px;
+            height: 100px;
+            padding: 20px;
+            border: 2px black solid;
+            border-radius: 20px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>JS Quiz</h1>
+        <h2>Poeng: <span id="poeng">0</span> </h2>
+    </header>
+    <div class="Quiz">
+        <div class="Spørs">
+            <h2>1. Hvilket land har flest øyer i verden?</h2>
+
+            <div class="svar">
+                <div onclick="sjekkSvar(false, this)">Indonesia</div>
+                <div onclick="sjekkSvar(true, this)">Sverige</div>
+                <div onclick="sjekkSvar(false, this)">Filippinene</div>
+            </div>
+        </div>
+        <div class="Spørs">
+            <h2>2. Hvor mange hjerter har en blekksprut?</h2>
+
+            <div class="svar">
+                <div onclick="sjekkSvar(false, this)">1</div>
+                <div onclick="sjekkSvar(false, this)">2</div>
+                <div onclick="sjekkSvar(true, this)">3</div>
+            </div>
+        </div>
+        <div class="Spørs">
+            <h2>3. Hvor mange ganger har Karpe solgt ut spektrum?</h2>
+
+            <div class="svar">
+                <div onclick="sjekkSvar(false, this)">12</div>
+                <div onclick="sjekkSvar(true, this)">14</div>
+                <div onclick="sjekkSvar(false, this)">18</div>
+            </div>
+        </div>
+        <div class="Spørs">
+            <h2>4. Hvor mange tidssoner er det i Russland?</h2>
+
+            <div class="svar">
+                <div onclick="sjekkSvar(false, this)">7</div>
+                <div onclick="sjekkSvar(false, this)">9</div>
+                <div onclick="sjekkSvar(true, this)">11</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        poeng = 0
+        poengElement = document.getElementById("poeng")
+        console.log(poengElement)
+
+        function sjekkSvar(erSvarKorrekt, boks) {
+            console.log("Sjekker svar...")
+            if (erSvarKorrekt) {
+                boks.style.backgroundColor = "green"
+                poeng += 10
+                poengElement.textContent = poeng
+            } else {
+                boks.style.backgroundColor = "red"
+            }
+
+            //Vi vil gjøre dette for alle 3 boksene:
+            bokser = boks.parentElement.children
+            for (svar of bokser) {
+                //Deaktiver klikking:
+                svar.onclick = ""
+            }
+
+            /*setTimeout(() => {
+                boks.style.backgroundColor = "lightblue"
+            }, 1000);*/
+        
+        }
+
+
+    </script>
+
+</body>
+
+</html>
